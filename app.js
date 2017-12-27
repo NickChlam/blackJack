@@ -166,15 +166,16 @@ shuffleArray(Deck);
 // check for dealer and player blackjack -----------------------------------------------------------------------------
 
 var c;
-for( c = 0; c < 2; c++)
+for( c = 0; c < 10; c++)
 {
-//    console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-//    if (shoe.length > 0){
-//    Deck= shoe;
-//    console.log(Deck.length + " " + shoe.length + " ________________________________________________________________________________________________________________________________________");
-//    shoe = [];
-//    }
-//    Deck.map(x => x.value === 1? x.value = 11: x.value = x.value )
+    console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    if (shoe.length > 0){
+    Deck= shoe;
+    console.log("Deck " + Deck.length + " " + "Shoe " + shoe.length + " ________________________________________________________________________________________________________________________________________");
+    shoe = [];
+        console.log("Shoe " + shoe.length)
+    }
+    Deck.map(x => x.value === 1? x.value = 11: x.value = x.value )
     
     shuffleArray(Deck);
     shuffle(Deck);
@@ -211,7 +212,7 @@ for( c = 0; c < 2; c++)
                     playerHand[1].value = 1;
                     splits++;
                 }
-                while(calcHand(playerHand) <=16 && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   ) // && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   
+                while(calcHand(playerHand) <16 && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   ) // && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   
                 {
                         var currentCard = Deck.pop();
                         
@@ -293,13 +294,14 @@ for( c = 0; c < 2; c++)
         
     }
 
-
+        // add rest of Deck to shoe
         while(Deck.length > 0) {
-            shoe.push(Deck.pop());
+        shoe.push(Deck.pop());
         }
-    }// end for 
+}// end while loop - end of play
 
-    console.log(shoe.length);
+
+console.log(shoe.length);
 
 console.log();
 console.log();
