@@ -175,7 +175,7 @@ for( c = 0; c < 10; c++)
     shoe = [];
         console.log("Shoe " + shoe.length)
     }
-    //chnage shoe ace values to 11
+    //change shoe ace values to 11
     Deck.map(x => x.value === 1? x.value = 11: x.value = x.value )
     
     shuffleArray(Deck);
