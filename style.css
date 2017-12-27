@@ -1,0 +1,122 @@
+img {
+    width: 18%;
+}
+.back {
+	background: transparent url('https://www.clowerweb.com/cors/blackjack/table.png') 0 0 no-repeat;
+	
+	color: #333;
+	font: 14px/17px Helvetica, Arial, Verdana, sans-serif;
+	height: 550px;
+	margin: 0 auto;
+	position: relative;
+	width: 1000px;
+}
+
+div#player, div#dhand {
+	font-weight: 700;
+	left: 400px;
+	position: absolute;
+    top:  45%;
+    
+	white-space: nowrap;
+    width: 400px;
+    
+    
+}
+div#dealer, div#dhand {
+	font-weight: 700;
+	left: 400px;
+	position: absolute;
+    top:  15%;
+    
+	white-space: nowrap;
+	width: 400px;
+}
+
+.card-10,.card-11,.card-12,.card-13,.card-14, .card-15, .card-16, .card-17, .card-18{
+
+position: relative;
+-webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+-webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+-webkit-animation-direction: reverse; /* Safari 4.0 - 8.0 */
+animation-name: example;
+animation-duration: .65s;
+animation-direction: reverse; 
+}
+
+.dcard-10,.dcard-11,.dcard-12,.dcard-13,.dcard-14, .dcard-15, .dcard-16, .dcard-17, .dcard-18{
+    
+    position: relative;
+    -webkit-animation-name: dealer; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-direction: reverse; /* Safari 4.0 - 8.0 */
+    animation-name: dealer;
+    animation-duration: .65s;
+    animation-direction: reverse; 
+    }
+
+/* .card-10{
+    position: relative;
+    right:0px;
+}
+.card-11,.dcard-11 {
+    position: relative;
+    right:40px;
+}
+.card-12,.dcard-12 {
+    position: relative;
+    right:80px;
+}
+.card-13,.dcard-13{
+    position: relative;
+    right:120px;
+}
+.card-14,.dcard-14{
+    position: relative;
+    right:160px;
+}
+.card-15,.dcard-15{
+    position: relative;
+    right:200px;
+} */
+
+/* @keyframes example {
+    0%   {left:-40px; top:0px;position: absolute;}
+    100% {
+        position: absolute;
+        content: url("img/redBack.png");
+        filter: brightness(25%);
+        filter: drop-shadow(8px 8px 10px grey);
+        left:275px; top:-190px; transform: rotate(-100deg);}
+} */
+
+@keyframes example {
+         0%   {left: 40px; top:0px; position: absolute;}
+         100% {
+             position: absolute;
+             content: url("img/redBack.png");
+             filter: brightness(25%);
+             filter: drop-shadow(8px 8px 10px grey);
+             left: 300px; top:-190px; transform: rotate(-100deg);}
+     }
+     
+@keyframes dealer {
+        0%   {
+            left: 40px; top:0px; position: absolute;
+            content: url("img/redBack.png");}
+
+        100% {
+            position: absolute;
+            content: url("img/redBack.png");
+            filter: brightness(25%);
+            filter: drop-shadow(8px 8px 10px grey);
+            left: 310px; top:-35px; transform: rotate(-100deg);}
+    }
+
+.controls{
+    margin: 0 auto;
+
+    width: 1000px;
+    
+    
+}
