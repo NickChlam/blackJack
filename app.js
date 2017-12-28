@@ -151,6 +151,15 @@ function choice(value){
         }   
     }
 
+if (process.argv.length <= 2) {
+    console.log("Usage: " + __filename + " SOME_PARAM");
+    process.exit(-1);
+}
+ 
+var param = process.argv[2];
+ 
+console.log('Param: ' + param);
+
 //fill the deck of cards
 fillDeck(5, Deck);
 
@@ -166,7 +175,7 @@ shuffleArray(Deck);
 // check for dealer and player blackjack -----------------------------------------------------------------------------
 
 var c;
-for( c = 0; c < 10; c++)
+for( c = 0; c < param; c++)
 {
     console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     if (shoe.length > 0){
@@ -279,12 +288,13 @@ for( c = 0; c < 10; c++)
             gamesPlayed++;
             var q = 0,w = 0;
 
-
+            
+            // empty player hand in shoe
             while(playerHand.length > 0){
                 shoe.push(playerHand.pop());
                 
             }
-           
+            //empty dealer hand in shoe
             while(dealerHand.length > 0){
                 shoe.push(dealerHand.pop());
             }
