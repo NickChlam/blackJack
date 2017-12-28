@@ -222,7 +222,8 @@ for( c = 0; c < param; c++)
                     playerHand[1].value = 1;
                     splits++;
                 }
-                while(calcHand(playerHand) <16 && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   ) // && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   
+                while(calcHand(playerHand) <=16 && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   ) 
+                    // && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   
                 {
                         var currentCard = Deck.pop();
                         
@@ -239,6 +240,7 @@ for( c = 0; c < param; c++)
                         var acePosition = playerHand.map(x => x.value).indexOf(11);
                         playerHand[acePosition].value = 1;
                         }
+                    
                     playerHand.push(currentCard);
                     }
 
