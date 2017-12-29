@@ -1,3 +1,67 @@
+//const readline = require('readline');
+// var prompt = require('prompt');
+//
+//const rl = readline.createInterface({
+//  input: process.stdin,
+//  output: process.stdout
+//});
+//var ans;
+//rl.question('What do you think of Node.js? ', (answer) => {
+//  // TODO: Log the answer in a database
+//  console.log(`Thank you for your valuable feedback: ${answer}`);
+//    ans = answer;
+//    console.log(ans);
+//  rl.close();
+//});
+//
+//
+//
+//  prompt.start();
+//
+//  prompt.get(['username', 'email'], function (err, result) {
+//    if (err) { return onErr(err); }
+//    console.log('Command-line input received:');
+//    console.log('  Username: ' + result.username);
+//    console.log('  Email: ' + result.email);
+//  });
+//
+//  function onErr(err) {
+//    console.log(err);
+//    return 1;
+//  }
+
+
+//var readlineSync = require('readline-sync');
+// 
+//// Wait for user's response. 
+//var userName = git readlineSync.question('May I have your name? ');
+//console.log('Hi ' + userName + '!');
+
+//var readlineSync = require('readline-sync'),
+//  animals = ['Lion', 'Elephant', 'Crocodile', 'Giraffe', 'Hippo', 'monkey'],
+//  index = readlineSync.keyInSelect(animals, 'Which animal?');
+//console.log('Ok, ' + animals[index] + ' goes to your room.');
+
+var readlineSync = require('readline-sync'), chalk = require('chalk'), MAX = 100, MIN = 0, value = 10, key;
+
+console.log('\n\n' + (new Array(20)).join(' ') +
+  '[Z] <- -> [X]  FIX: [Q]\n');
+
+while (true) {
+  console.log('\x1B[1A\x1B[K|' +
+    (new Array(value + 1)).join('-') + chalk.green.bold('$$') +
+    (new Array(MAX - value + 1)).join('-') + '| ' + value);
+  key = readlineSync.keyIn('',
+    {hideEchoBack: true, mask: '', limit: 'zx '});
+  if (key === 'z') { if (value > MIN ) { value-=5; } }
+  else if (key === 'x') { if (value < MAX ) { value+=5; } }
+  else { break;  }
+}
+console.log(chalk.black.bold.bgYellow('\nA value the user requested: ' + value));
+
+// clear console: '\033c'
+//console.log('\n\n' + '\033c');
+
 
 class Card {
     constructor(value, suit, img) {
@@ -137,282 +201,25 @@ function choice(value){
                 }
             } 
         }
-    } 
+    } // end fillDeck 
+    console.log('\n\n' + '\033c');
+    var readline = require('readline-sync');
+    var userName =  readline.question('welcome to Black Jack what is your Name?  ' + '\n');
+    console.log("Welcome: " + userName + " lets Play!")
 
-    function fillAces(hand){
-        hand[0] = new Card(11, 2, "img/cards/ace_of_clubs.png");
-        hand[1] = new Card(11, 4, "img/cards/ace_of_diamonds.png");
+gameOptions = ['Deal', 'Add Money', 'Quit'],
+index = readline.keyInSelect(gameOptions, 'What would you like to do?');
 
-    }
+switch(index){
+    case 0:{
+        //deal game 
+        fillDeck(5, Deck);
+        shuffle(Deck);
 
-    function hasAce(hand){
-        for(let i= 0; i < hand.length; i++ )
-        {
-           if(hand[i].value === 11){return true;}
-        }   
-    }
-
-if (process.argv.length <= 2) {
-    console.log("Usage: " + __filename + " SOME_PARAM");
-    process.exit(-1);
+        dealCards(playerHand, dealerHand, Deck);
+        console.log("Dealer Shows: " + calcCard(dealerHand[1].value) + '\u2764')
+            }
 }
- 
-var param = process.argv[2];
- 
-console.log('Param: ' + param);
-
-//fill the deck of cards
-fillDeck(5, Deck);
-
-// shuffle Deck
-
-shuffleArray(Deck);
-
-// Deal Cards 
 
 
-
-
-// check for dealer and player blackjack -----------------------------------------------------------------------------
-
-var c;
-for( c = 0; c < param; c++)
-{
-    console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-    if (shoe.length > 0){
-    Deck= shoe;
-    console.log("Deck " + Deck.length + " " + "Shoe " + shoe.length + " ________________________________________________________________________________________________________________________________________");
-    shoe = [];
-        console.log("Shoe " + shoe.length)
-    }
-    //change shoe ace values to 11
-    Deck.map(x => x.value === 1? x.value = 11: x.value = x.value )
-    
-    shuffleArray(Deck);
-    shuffle(Deck);
-    while( Deck.length > 20){ // while( Deck.length > 20)
-
-    dealCards(playerHand, dealerHand, Deck)
-        var currentCard; 
-        if(calcHand(dealerHand) === 21 && calcHand(playerHand) != 21){
-            //dealer has blackjack
-            //player loses
-            console.log("Dealer Black Jack - LOSER ");
-            dealerBlackJack++;
-            loses++;
-            gamesPlayed++;
-            
-        }else if(calcHand(dealerHand) === 21 && calcHand(playerHand) === 21){
-            // draw
-            console.log("blackJack PUSH");
-            push++;
-            gamesPlayed++;
-        }else if(calcHand(playerHand) === 21 && calcHand(dealerHand) != 21){
-            // player blackjack
-            blackJacks++;
-            wins++;
-            gamesPlayed++;
-            console.log("WINNER: Player BlackJack")
-        }else{
-
-
-        //play game automation ------------------------------------------------------------------------------------------------------------
-                if(playerHand[0].value === 11 && playerHand[1].value === 11)
-                {
-                    //split()
-                    playerHand[1].value = 1;
-                    splits++;
-                }
-                while(calcHand(playerHand) <=16 && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   ) 
-                    // && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   
-                {
-                        var currentCard = Deck.pop();
-                        
-                        
-                        if(currentCard.value === 11 && calcHand(playerHand) < 11){
-                            currentCard.value = 11;
-                            console.log("Ace = 11 : Value : " + currentCard.value);
-                            
-                        }else if(currentCard.value === 11 && calcHand(playerHand) >= 11){
-                            currentCard.value = 1;
-                            console.log("Ace = 1 : Value : " + currentCard.value);
-                        }
-                        if( (calcHand(playerHand) + currentCard.value) > 21 && playerHand.map(x => x.value).indexOf(11) > -1){ 
-                        var acePosition = playerHand.map(x => x.value).indexOf(11);
-                        playerHand[acePosition].value = 1;
-                        }
-                    
-                    playerHand.push(currentCard);
-                    }
-
-                    if(dealerHand[0].value === 11 && dealerHand[1].value === 11)
-                    {
-                        //split()
-                        dealerHand[1].value = 1;
-                        splits++;
-                    }
-                while(calcHand(dealerHand) <=16 && calcHand(playerHand) < 22)
-                {
-                    var currentCard1 = Deck.pop();
-                    if(currentCard1.value === 11 && calcHand(dealerHand) < 11 | calcHand(dealerHand) > 16){
-                        currentCard1.value = 11;
-                        
-                    }else if(currentCard1.value === 11 && calcHand(dealerHand) >= 11){
-                        currentCard1.value = 1;
-                        
-                    }
-                    if( (calcHand(dealerHand) + currentCard1.value) > 21 && dealerHand.map(x => x.value).indexOf(11) > -1){ 
-                        var acePosition = dealerHand.map(x => x.value).indexOf(11);
-                        dealerHand[acePosition].value = 1;
-                        }
-                    dealerHand.push(currentCard1);
-                    
-                }
-
-            }
-
-            
-    
-            if(calcHand(playerHand) > 21){bust++; loses++ }
-            else if(calcHand(playerHand) <=21 &&  calcHand(dealerHand) <  calcHand(playerHand) | (calcHand(dealerHand) > 21 && calcHand(playerHand) <=21)){wins++; lasthandwon = true}
-        
-            else if(calcHand(dealerHand) <=21 &&  calcHand(playerHand) < calcHand(dealerHand)  | (calcHand(playerHand) > 21 && calcHand(dealerHand) <=21)){loses++; lasthandwon = false}
-        
-            else if(calcHand(playerHand) === calcHand(dealerHand)){push++}
-            streak = lasthandwon === true ? streak = streak +1: streak = 0;
-            longestwin = longestwin < streak ? streak: longestwin;
-            console.log("player: " + calcHand(playerHand) );
-	        console.log(playerHand);
-            
-            console.log("dealer: " + calcHand(dealerHand));
-            console.log(dealerHand);
-            console.log();
-            console.log();
-            gamesPlayed++;
-            var q = 0,w = 0;
-
-            
-            // empty player hand in shoe
-            while(playerHand.length > 0){
-                shoe.push(playerHand.pop());
-                
-            }
-            //empty dealer hand in shoe
-            while(dealerHand.length > 0){
-                shoe.push(dealerHand.pop());
-            }
-
-            
-            playerHand = [];
-            dealerHand = [];
-        
-    }
-
-        // add rest of Deck to shoe
-        while(Deck.length > 0) {
-        shoe.push(Deck.pop());
-        }
-}// end while loop - end of play
-
-
-console.log(shoe.length);
-
-console.log();
-console.log();
-        console.log("wins: " + wins + " Win: " + Math.ceil(((wins)/gamesPlayed) *100) + "% " +  " loses: " + loses + " Pushes: " + push + " blackJacks: " + blackJacks + " Games Played: " + gamesPlayed + " Busts: " + bust) ;
-
-console.log();
-console.log();
-
-
-
-//show cards on UI -----------------------------------------------------------------------------------------------------------------------------
-
-// fillDeck(5, Deck);
-// shuffleArray(Deck);
-// dealCards(playerHand, dealerHand, Deck);
-
-// document.querySelector('.card').src =   playerHand[0].img
-// document.querySelector('.card-2').src = playerHand[1].img;
-
-
-// document.querySelector('.card-d').src =   dealerHand[0].img
-// document.querySelector('.card-d2').src = dealerHand[1].img;
-
-
-// var counter = 3;
-// document.querySelector('.btn-primary').addEventListener("click", () => {
-//     playerHand.push(Deck.pop());
-//     console.log(calcHand(playerHand));
-
-//     document.querySelector('#player').appendChild(document.createElement("img")).outerHTML = '<img class="card-' + counter +'"' + ' src="#" alt=""> ' ;
-//     document.querySelector('.card-' + counter).src =playerHand[counter -1].img;
-//     counter++;
- 
-// });
-
-
-
-//--------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-//2 3 4 5 6 7 8 9 10 J Q K A 
-// fillDeck(1,Deck);
-// shuffleArray(Deck);
-
-//dealCards(playerHand, dealerHand, Deck);
-
-// dealGame();
-
-// var left = -40;
-// var counter = 0;
-// var pos = 40;
-// document.querySelector('#player').appendChild(document.createElement("div")).outerHTML = '<div class="hand-' + i  + '"' + ' > ';
-// document.querySelector('.btn-deal').addEventListener("click", () => {
-//     console.log("in here");
-//     playerHand.push(Deck.pop());
-//     document.querySelector('.hand-' + i).appendChild(document.createElement("img")).outerHTML = '<img class="card-' + i + counter +'"' + ' src="#" alt=""> ' ;
-//     document.querySelector('.card-' + i + counter).src =playerHand[counter ].img;
-//     document.querySelector('.card-' + i + counter).style.position = "relative";
-//     document.querySelector('.card-' + i + counter ).style.right = pos + "px";
-//     counter++;
-//     pos +=40;
-//    }); // NED CLICK 
-
-//function dealGame(){
-//    var counter = 0;
-//    pos = 0;
-//    //deal player card
-//  
-//    playerHand.push(Deck.pop());
-//    document.querySelector('.hand-' + i).appendChild(document.createElement("img")).outerHTML = '<img class="card-' + i + counter +'"' + ' src="#" alt=""> ' ;
-//    document.querySelector('.card-' + i + counter).src =playerHand[counter ].img;
-//    document.querySelector('.card-' + i + counter).style.position = "relative";
-//    document.querySelector('.card-' + i + counter ).style.right = pos + "px";
-//    
-//    counter++;
-//    
-//   setTimeout(function() {
-//    playerHand.push(Deck.pop());
-//    document.querySelector('.hand-' + i).appendChild(document.createElement("img")).outerHTML = '<img class="card-' + i + counter +'"' + ' src="#" alt=""> ' ;
-//    document.querySelector('.card-' + i + counter).src =playerHand[counter ].img;
-//    document.querySelector('.card-' + i + counter).style.position = "relative";
-//    document.querySelector('.card-' + i + counter ).style.right = pos + "px";
-//   }, 1000);
-//  
-//
-//    counter++;
-//    pos +=40;   
-//
-//}
-//
-//function sendCard(counter, i, pos){
-//   
-//    dealerHand.push(Deck.pop());
-//    
-//    document.querySelector('#dealer').appendChild(document.createElement("div")).outerHTML = '<div class="dhand-' + i  + '"' + ' > ';
-//    document.querySelector('.dhand-' + i).appendChild(document.createElement("img")).outerHTML = '<img class="dcard-' + i + counter +'"' + ' src="#" alt=""> ' ;
-//    document.querySelector('.dcard-' + i + counter).src =dealerHand[counter ].img;
-//    document.querySelector('.dcard-' + i + counter).style.position = "relative";
-//    
-//}
+//\x1B[1A\x1B[K|

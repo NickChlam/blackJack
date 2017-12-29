@@ -378,7 +378,7 @@ shuffleArray(Deck);
 
 //dealCards(playerHand, dealerHand, Deck);
 
-dealGame();
+//dealGame();
 
 // var left = -40;
 // var counter = 0;
