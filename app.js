@@ -1,3 +1,4 @@
+
 class Card {
     constructor(value, suit, img) {
         this.value = value;
@@ -91,14 +92,14 @@ function choice(value){
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
     
-        // While there remain elements to shuffle...
+        // While elements to shuffle
         while (0 !== currentIndex) {
     
         // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
     
-        // And swap it with the current element.
+        // swap it with current element.
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
@@ -151,6 +152,15 @@ function choice(value){
         }   
     }
 
+if (process.argv.length <= 2) {
+    console.log("Usage: " + __filename + " SOME_PARAM");
+    process.exit(-1);
+}
+ 
+var param = process.argv[2];
+ 
+console.log('Param: ' + param);
+
 //fill the deck of cards
 fillDeck(5, Deck);
 
@@ -166,19 +176,21 @@ shuffleArray(Deck);
 // check for dealer and player blackjack -----------------------------------------------------------------------------
 
 var c;
-for( c = 0; c < 1; c++)
+for( c = 0; c < param; c++)
 {
     console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     if (shoe.length > 0){
     Deck= shoe;
-    console.log(Deck.length + " ________________________________________________________________________________________________________________________________________");
+    console.log("Deck " + Deck.length + " " + "Shoe " + shoe.length + " ________________________________________________________________________________________________________________________________________");
     shoe = [];
+        console.log("Shoe " + shoe.length)
     }
+    //change shoe ace values to 11
     Deck.map(x => x.value === 1? x.value = 11: x.value = x.value )
-    shuffleArray(Deck);
     
+    shuffleArray(Deck);
     shuffle(Deck);
-for(let m = 0; m < 1; m++){ // while( Deck.length > 20)
+    while( Deck.length > 20){ // while( Deck.length > 20)
 
     dealCards(playerHand, dealerHand, Deck)
         var currentCard; 
@@ -211,7 +223,8 @@ for(let m = 0; m < 1; m++){ // while( Deck.length > 20)
                     playerHand[1].value = 1;
                     splits++;
                 }
-                while(calcHand(playerHand) <=16 && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   ) // && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   
+                while(calcHand(playerHand) <=16 | calcHand(playerHand) < 12   ) //dealerHand[1].value >= 6
+                    // && dealerHand[1].value >= 6 | calcHand(playerHand) < 12   
                 {
                         var currentCard = Deck.pop();
                         
@@ -228,6 +241,7 @@ for(let m = 0; m < 1; m++){ // while( Deck.length > 20)
                         var acePosition = playerHand.map(x => x.value).indexOf(11);
                         playerHand[acePosition].value = 1;
                         }
+                    
                     playerHand.push(currentCard);
                     }
 
@@ -261,7 +275,9 @@ for(let m = 0; m < 1; m++){ // while( Deck.length > 20)
     
             if(calcHand(playerHand) > 21){bust++; loses++ }
             else if(calcHand(playerHand) <=21 &&  calcHand(dealerHand) <  calcHand(playerHand) | (calcHand(dealerHand) > 21 && calcHand(playerHand) <=21)){wins++; lasthandwon = true}
+        
             else if(calcHand(dealerHand) <=21 &&  calcHand(playerHand) < calcHand(dealerHand)  | (calcHand(playerHand) > 21 && calcHand(dealerHand) <=21)){loses++; lasthandwon = false}
+        
             else if(calcHand(playerHand) === calcHand(dealerHand)){push++}
             streak = lasthandwon === true ? streak = streak +1: streak = 0;
             longestwin = longestwin < streak ? streak: longestwin;
@@ -275,33 +291,13 @@ for(let m = 0; m < 1; m++){ // while( Deck.length > 20)
             gamesPlayed++;
             var q = 0,w = 0;
 
-
-            // //Displayt Logic --------------------------------------------------------
-            // document.querySelector('#player').appendChild(document.createElement("div")).outerHTML = '<div class="hand-' + i  + '"' + ' > ';
-            // document.querySelector('#dealer').appendChild(document.createElement("div")).outerHTML = '<div class="dhand-' + i  + '"' + ' > ';
-            // for(let counter = 0; counter < playerHand.length ; counter++){
             
-            // document.querySelector('.hand-' + i).appendChild(document.createElement("img")).outerHTML = '<img class="card-' + i + counter +'"' + ' src="#" alt=""> ' ;
-            // document.querySelector('.card-' + i + counter).src =playerHand[counter ].img;
-            
-            // }
-            // for(let counter = 0; counter < dealerHand.length ; counter++){
-                
-            //     document.querySelector('.dhand-' + i).appendChild(document.createElement("img")).outerHTML = '<img class="dcard-' + i + counter +'"' + ' src="#" alt=""> ' ;
-            //     document.querySelector('.dcard-' + i + counter).src = dealerHand[counter ].img;
-                
-            //     }
-            // i++;
-        //     //_________________________________________________________________________
-
-
-
-
+            // empty player hand in shoe
             while(playerHand.length > 0){
                 shoe.push(playerHand.pop());
                 
             }
-           
+            //empty dealer hand in shoe
             while(dealerHand.length > 0){
                 shoe.push(dealerHand.pop());
             }
@@ -312,13 +308,14 @@ for(let m = 0; m < 1; m++){ // while( Deck.length > 20)
         
     }
 
-
+        // add rest of Deck to shoe
         while(Deck.length > 0) {
-            shoe.push(Deck.pop());
+        shoe.push(Deck.pop());
         }
-    }// end for 
+}// end while loop - end of play
 
-    console.log(shoe.length);
+
+console.log(shoe.length);
 
 console.log();
 console.log();
@@ -326,19 +323,6 @@ console.log();
 
 console.log();
 console.log();
-
-// CONSOLE GAME PLAY---------------------------------------------------------------------------------------------------------------------------------------------
-
-
-   
-
-
-
-
-
-// -----------------------------------------------------------------------------------------------------------------------------------------------
-
-
 
 
 
@@ -373,12 +357,12 @@ console.log();
 
 
 //2 3 4 5 6 7 8 9 10 J Q K A 
-fillDeck(1,Deck);
-shuffleArray(Deck);
+// fillDeck(1,Deck);
+// shuffleArray(Deck);
 
 //dealCards(playerHand, dealerHand, Deck);
 
-//dealGame();
+// dealGame();
 
 // var left = -40;
 // var counter = 0;
@@ -406,7 +390,7 @@ function dealGame(){
     document.querySelector('.card-' + i + counter).style.position = "relative";
     document.querySelector('.card-' + i + counter ).style.right = pos + "px";
     
-    counter++
+    counter++;
     
    setTimeout(function() {
     playerHand.push(Deck.pop());
@@ -432,4 +416,3 @@ function sendCard(counter, i, pos){
     document.querySelector('.dcard-' + i + counter).style.position = "relative";
     
 }
-
